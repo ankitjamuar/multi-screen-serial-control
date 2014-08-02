@@ -56,7 +56,14 @@ namespace _candid_bump
             };
 
             serial.DataReceived += SerialPortdataReceived;
-            serial.Open();
+            try
+            {
+                serial.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening port: "+ex.Message, "SERIAL PORT ERROR", MessageBoxButtons.OK);
+            } 
             
         }
 
@@ -106,7 +113,8 @@ namespace _candid_bump
         private void button1_Click(object sender, EventArgs e)
         {
             
-            screen1 = new Form(); 
+            screen1 = new Form();
+            screen1.Text = "SCREEN 1";
             vlc1 = new AxVLCPlugin2();
             screen1.Controls.Add(vlc1);
             screen1.Show();
@@ -119,6 +127,7 @@ namespace _candid_bump
         private void button2_Click(object sender, EventArgs e)
         {
             screen2 = new Form();
+            screen2.Text = "SCREEN 2";
             vlc2 = new AxVLCPlugin2();
             screen2.Controls.Add(vlc2);
             screen2.Show();
@@ -131,6 +140,7 @@ namespace _candid_bump
         private void button3_Click(object sender, EventArgs e)
         {
             screen3 = new Form();
+            screen3.Text = "SCREEN 3";
             vlc3 = new AxVLCPlugin2();
             screen3.Controls.Add(vlc3);
             screen3.Show();
@@ -142,6 +152,7 @@ namespace _candid_bump
         private void button4_Click(object sender, EventArgs e)
         {
             screen4 = new Form();
+            screen4.Text = "SCREEN 4";
             vlc4 = new AxVLCPlugin2();
             screen4.Controls.Add(vlc4);
             screen4.Show();
@@ -154,6 +165,7 @@ namespace _candid_bump
         private void button5_Click(object sender, EventArgs e)
         {
             screen5 = new Form();
+            screen5.Text = "SCREEN 5";
             vlc5 = new AxVLCPlugin2();
             screen5.Controls.Add(vlc5);
             screen5.Show();
@@ -165,6 +177,7 @@ namespace _candid_bump
         private void button6_Click(object sender, EventArgs e)
         {
             screen6 = new Form();
+            screen6.Text = "SCREEN 6";
             vlc6 = new AxVLCPlugin2();
             screen6.Controls.Add(vlc6);
             screen6.Show();
@@ -176,6 +189,7 @@ namespace _candid_bump
         private void button7_Click(object sender, EventArgs e)
         {
             screen7 = new Form();
+            screen7.Text = "SCREEN 7";
             vlc7 = new AxVLCPlugin2();
             screen7.Controls.Add(vlc7);
             screen7.Show();
@@ -187,6 +201,7 @@ namespace _candid_bump
         private void button8_Click(object sender, EventArgs e)
         {
             screen8 = new Form();
+            screen8.Text = "SCREEN 8";
             vlc8 = new AxVLCPlugin2();
             screen8.Controls.Add(vlc8);
             screen8.Show();
@@ -194,8 +209,7 @@ namespace _candid_bump
             var convertedURI = uri.AbsoluteUri;
             vlc8.playlist.add(convertedURI);
 
-            Thread thread = new Thread(new ThreadStart(init));
-            thread.Start();
+            
 
         }
 
@@ -240,6 +254,19 @@ namespace _candid_bump
                     return vlc8;
                 default:
                     return vlc1;
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (vlc1 != null && vlc2 != null && vlc3 != null && vlc4 != null)
+            {
+                Thread thread = new Thread(new ThreadStart(init));
+                thread.Start();
+            }
+            else
+            {
+                MessageBox.Show("All screens are not active.","Alert",MessageBoxButtons.OK);
             }
         }
 
