@@ -48,9 +48,9 @@ namespace _candid_bump
         public void init()
         {
 
-           
-         
-            serial = new SerialPort("COM32", 9600, Parity.None, 8, StopBits.One)
+
+            
+            serial = new SerialPort(textBox1.Text.ToString(), 9600, Parity.None, 8, StopBits.One)
             {
                 Handshake = Handshake.None
             };
